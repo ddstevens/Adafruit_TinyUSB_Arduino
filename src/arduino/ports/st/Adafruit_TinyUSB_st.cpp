@@ -23,6 +23,7 @@
  */
 
 #include "stm32f4xx_hal.h"
+#include "stm32f4xx_ll_utils.h"
 #include "tusb_option.h"
 #include "tusb.h"
 
@@ -51,8 +52,10 @@ void TinyUSB_Port_InitDevice(uint8_t rhport) {
 }
 
 uint8_t TinyUSB_Port_GetSerialNumber(uint8_t serial_id[16]) {
-  (void)serial_id;
-  return 7;
+  ((uint32_t*)serial_id)[0] = LL_GetUID_Word0();
+  ((uint32_t*)serial_id)[1] = LL_GetUID_Word1();
+  ((uint32_t*)serial_id)[2] = LL_GetUID_Word2();
+  return 12;
 }
 
 #endif
