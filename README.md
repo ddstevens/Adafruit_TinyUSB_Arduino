@@ -1,3 +1,15 @@
+# STM32F401 "port" of Adafruit TinyUSB Library for Arduino
+
+I wanted to use the Adafruit TinyUSB Arduino library for a project but it doesn't currently support STM MCUs.
+
+This is my attempt to add support. Keep your expectations in check, it wasn't long ago I was learning how to blink a LED. I just implemented the methods outlined in the library section of their porting guide.
+
+You have to modify one of the core Arduino files to build this library which will **break STM's USB support**.
+
+To use copy this project to your local Arduino library directory and rename the function `OTG_FS_IRQHandler` in `cores/arduino/stm32/usb/usbd_conf.c` so it doesn't conflict with TinyUSB.
+
+This port has the same limitations (and maybe more) as other cores without built-in support. I wasn't sure how to handle runtime DFU support so that's missing. Anyway see below for the limitations. Good luck.
+
 # Adafruit TinyUSB Library for Arduino
 
 [![Build Status](https://github.com/adafruit/Adafruit_TinyUSB_Arduino/workflows/Build/badge.svg)](https://github.com/adafruit/Adafruit_TinyUSB_Arduino/actions) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
