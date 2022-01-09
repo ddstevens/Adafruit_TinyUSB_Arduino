@@ -42,6 +42,9 @@
   // Use the BSP sdk/include/arduino_tinyusb/include/tusb_config.h
   #include <tusb_config.h>
 
+#elif defined(ARDUINO_ARCH_STM32)
+  #include "arduino/ports/st/tusb_config_st.h"
+
 #else
   #error TinyUSB Arduino Library does not support your core yet
 #endif
