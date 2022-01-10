@@ -6,7 +6,7 @@ This is my attempt to add support. Keep your expectations in check, it wasn't lo
 
 You have to modify one of the core Arduino files to build this library which will most likely **break STM's USB libraries** when used with TinyUSB.
 
-To use copy this project to your local Arduino library directory and change the function signature `void OTG_FS_IRQHandler(void)` to `__weak OTG_FS_IRQHandler(void)` in `cores/arduino/stm32/usb/usbd_conf.c` so it doesn't conflict with TinyUSB.
+To use copy this project to your local Arduino library directory and change the function signature `void OTG_FS_IRQHandler(void)` to `__weak void OTG_FS_IRQHandler(void)` in `cores/arduino/stm32/usb/usbd_conf.c` so it doesn't conflict with TinyUSB.
 
 This port has the same limitations (and maybe more) as other cores without built-in support. I wasn't sure how to handle runtime DFU support so that's missing. Anyway see below for the limitations. Good luck.
 
